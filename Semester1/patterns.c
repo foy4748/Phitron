@@ -40,10 +40,18 @@ void triangleC(int n){
 		printf("\n");
 	}
 }
+
 void triangleD(int n){
 	int i,j;
-	for (i = 0; i < n; i++) {
-		
+	for(i=n; i>=1; i--){
+		for(j=1;j<=n;j++){
+			if((n-j) < (j-i) || i == j || j > i)
+			printf("*\t");
+			else{
+				printf("\t");
+			}
+		}
+		printf("\n");
 	}
 }
 
