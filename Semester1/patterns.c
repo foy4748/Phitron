@@ -45,13 +45,29 @@ void triangleD(int n){
 	int i,j;
 	for(i=n; i>=1; i--){
 		for(j=1;j<=n;j++){
-			if((n-j) < (j-i) || i == j || j > i)
+			if( i == j || j > i)
 			printf("*\t");
 			else{
 				printf("\t");
 			}
 		}
 		printf("\n");
+	}
+}
+
+void cross(int n){
+	int i,j;
+	for (i = 1; i <= n; i++) {
+		for (j = 1; j <= n; j++) {
+			if(i==j || i == (n+1-j)){
+				printf("*\t");
+			}
+			else{
+				printf("\t");
+			}
+		}
+		printf("\n");
+		
 	}
 }
 
@@ -65,5 +81,7 @@ int main(){
 	triangleC(dimenstion);
 	printf("Triangle D ^| \n");
 	triangleD(dimenstion);
+	printf("Cross \n");
+	cross(dimenstion);
 	return 0;
 }
