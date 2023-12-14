@@ -14,6 +14,8 @@ class DNode{
 		}
 };
 
+// Inserting ==========================================
+
 void input_doubly_linked_list(DNode* & HEAD, DNode* & TAIL, int value){
 	DNode * newNode = new DNode(value);
 	if(HEAD == NULL){
@@ -24,24 +26,6 @@ void input_doubly_linked_list(DNode* & HEAD, DNode* & TAIL, int value){
 	TAIL->next = newNode;
 	newNode->prev = TAIL;
 	TAIL = newNode;
-}
-
-void print_doubly_linked_list(DNode * HEAD){
-	if(HEAD == NULL){
-		cout<<endl;
-		return;
-	}
-	cout<<HEAD->value<<" ";
-	print_doubly_linked_list(HEAD->next);
-}
-
-void print_reversely_doubly_linked_list(DNode * TAIL){
-	if(TAIL == NULL){
-		cout<<endl;
-		return;
-	}
-	cout<<TAIL->value<<" ";
-	print_reversely_doubly_linked_list(TAIL->prev);
 }
 
 void insert_between_doubly_linked_list(DNode * HEAD, int position, int value){
@@ -63,6 +47,39 @@ void insert_between_doubly_linked_list(DNode * HEAD, int position, int value){
 
 }
 
+void insert_at_head_doubly_linked_list(DNode* & HEAD, DNode* & TAIL, int value){
+	DNode * newNode = new DNode(value);
+	if(HEAD == NULL){
+		HEAD = newNode;
+		TAIL = newNode;
+		return;
+	}
+	HEAD->prev = newNode;
+	newNode->next = HEAD;
+	HEAD = newNode;
+}
+
+// Printing Nodes =====================================
+
+void print_doubly_linked_list(DNode * HEAD){
+	if(HEAD == NULL){
+		cout<<endl;
+		return;
+	}
+	cout<<HEAD->value<<" ";
+	print_doubly_linked_list(HEAD->next);
+}
+
+void print_reversely_doubly_linked_list(DNode * TAIL){
+	if(TAIL == NULL){
+		cout<<endl;
+		return;
+	}
+	cout<<TAIL->value<<" ";
+	print_reversely_doubly_linked_list(TAIL->prev);
+}
+
+
 
 int main()
 {
@@ -81,7 +98,17 @@ int main()
 	//print_reversely_doubly_linked_list(TAIL);
 	cout<<"Printing after adding node between"<<endl;
 	insert_between_doubly_linked_list(HEAD, 1, 12);
+	cout<<"Printing Doubly Linked List"<<endl;
 	print_doubly_linked_list(HEAD);
+	cout<<"Printing RERVERSLY Doubly Linked List"<<endl;
+	print_reversely_doubly_linked_list(TAIL);
+
+	cout<<"Printing after adding before head node"<<endl;
+	insert_at_head_doubly_linked_list(HEAD, TAIL, 100);
+	cout<<"Printing Doubly Linked List"<<endl; print_doubly_linked_list(HEAD);
+	cout<<"Printing RERVERSLY Doubly Linked List"<<endl;
+	print_reversely_doubly_linked_list(TAIL);
 	return 0;
 }
+
 
