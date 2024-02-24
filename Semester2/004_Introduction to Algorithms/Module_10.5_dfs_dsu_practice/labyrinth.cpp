@@ -27,7 +27,7 @@ void bfs(int sr, int sc) {
   queue<pair<int, int>> q;
   level[sr][sc] = 0;
   isVisited[sr][sc] = true;
-  parent[sr][sc] = {sr, sc};
+  parent[sr][sc] = {-1, -1};
   q.push({sr, sc});
 
   while (!q.empty()) {
@@ -80,21 +80,15 @@ int main() {
     int levels = level[Br][Bc];
     cout << levels << endl;
 
-    cout << endl;
-    for (int i = 1; i <= max_r; i++) {
-      for (int j = 1; j <= max_c; j++) {
-        cout << grid[i][j];
-      }
-      cout << endl;
-    }
-    cout << endl;
+    int tR = Br;
+    int tC = Bc;
 
-    for (int i = 1; i <= max_r; i++) {
-      for (int j = 1; j <= max_c; j++) {
-        cout << direction[i][j];
-      }
-      cout << endl;
+    while (parent[tR][tC].first != -1 && parent[tR][tC].second != -1) {
+      cout << direction[tR][tC];
+      tR = parent[tR][tC].first;
+      tC = parent[tR][tC].second;
     }
+    cout << direction[Ar][Ac];
 
   } else {
     cout << "NO" << endl;
