@@ -8,10 +8,9 @@ int main() {
   cin >> X >> Y;
   long long int k = 2;
   long long int count = 1;
-  while (k * X < Y) {
+  while (k * X <= Y) {
     count++;
     X = k * X;
-    k++;
   }
   cout << count << endl;
   return 0;
