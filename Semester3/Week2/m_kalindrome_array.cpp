@@ -4,20 +4,22 @@
 
 using namespace std;
 
-bool isPalindrome(vector<int> &arr) {
-  int r = arr.size() - 1;
+bool isPalindrome(vector<int> &arr, int x) {
   int l = 0;
-
-  bool result = true;
+  int r = arr.size() - 1;
   while (l <= r) {
-    if (arr[l] != arr[r]) {
-      result = false;
-      break;
+    if (arr[l] == x)
+      l++;
+    else if (arr[r] == x)
+      r--;
+    else if (arr[l] != arr[r])
+      return false;
+    else {
+      l++;
+      r--;
     }
-    l++;
-    r--;
   }
-  return result;
+  return true;
 }
 
 int main() {
@@ -32,7 +34,7 @@ int main() {
     int N;
     cin >> N;
 
-    int arr[N];
+    vector<int> arr(N);
     for (int i = 0; i < N; i++)
       cin >> arr[i];
 
@@ -45,16 +47,12 @@ int main() {
     int l = 0;
     int r = N - 1;
     bool result = true;
-    while (l <= r) {
+
+    while (l < r) {
       if (arr[l] != arr[r]) {
-        vector<int> v1, v2;
-        for (int i = 0; i < N; i++) {
-          if (arr[i] != arr[l])
-            v1.push_back(arr[i]);
-          if (arr[i] != arr[r])
-            v2.push_back(arr[i]);
-        }
-        result = isPalindrome(v1) || isPalindrome(v2);
+        result = isPalindrome(arr, arr[l]) || isPalindrome(arr, arr[r]);
+        if (!result)
+          break;
       }
       l++;
       r--;
