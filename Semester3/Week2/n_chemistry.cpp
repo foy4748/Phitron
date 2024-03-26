@@ -27,21 +27,31 @@ int main() {
     }
 
     int odd_freq_nums = 0;
+    int even_freq_nums = 0;
     for (int i = 0; i < 26; i++) {
       char x = 'a' + i;
       int freq = mp_char_freq[x];
       // cout << x << "\t" << freq << "\n";
       if (freq % 2 == 1)
         odd_freq_nums += freq;
+      else
+        even_freq_nums += freq;
     }
-    cout << "\n";
+    // cout << "\n";
 
     int diff = odd_freq_nums - K;
-    cout << K << "\t" << odd_freq_nums << "\t" << diff << "\t";
-    diff % 2 == 0 ? cout << "YES"
-                         << "\n"
-                  : cout << "NO"
-                         << "\n";
+    int remaining_spaces = N - K;
+
+    if (remaining_spaces % 2 == 0 && diff % 2 == 0) {
+      cout << "YES"
+           << "\n";
+    } else if (remaining_spaces % 2 == 1 && diff % 2 == 1) {
+      cout << "YES"
+           << "\n";
+    } else {
+      cout << "NO"
+           << "\n";
+    }
   }
   return 0;
 }
