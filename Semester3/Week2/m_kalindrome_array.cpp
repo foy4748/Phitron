@@ -51,8 +51,7 @@ int main() {
     while (l < r) {
       if (arr[l] != arr[r]) {
         result = isPalindrome(arr, arr[l]) || isPalindrome(arr, arr[r]);
-        if (!result)
-          break;
+        break;
       }
       l++;
       r--;

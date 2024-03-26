@@ -15,6 +15,7 @@ int main() {
   while (T--) {
     int N, K;
     cin >> N >> K;
+    int remaining_slot = N - K;
     char arr[N];
     map<char, int> mp_char_freq;
     // map<int, int> freq_freq;
@@ -26,32 +27,24 @@ int main() {
       arr[i] = X;
     }
 
-    int odd_freq_nums = 0;
-    int even_freq_nums = 0;
+    int oddFreqCount = 0;
     for (int i = 0; i < 26; i++) {
       char x = 'a' + i;
       int freq = mp_char_freq[x];
-      // cout << x << "\t" << freq << "\n";
-      if (freq % 2 == 1)
-        odd_freq_nums += freq;
-      else
-        even_freq_nums += freq;
+      if (freq % 2 != 0)
+        oddFreqCount++;
     }
-    // cout << "\n";
+    if (oddFreqCount - 1 < 0)
+      oddFreqCount = 0;
+    else
+      oddFreqCount--;
 
-    int diff = odd_freq_nums - K;
-    int remaining_spaces = N - K;
-
-    if (remaining_spaces % 2 == 0 && diff % 2 == 0) {
+    if (oddFreqCount <= K)
       cout << "YES"
            << "\n";
-    } else if (remaining_spaces % 2 == 1 && diff % 2 == 1) {
-      cout << "YES"
-           << "\n";
-    } else {
+    else
       cout << "NO"
            << "\n";
-    }
   }
   return 0;
 }
