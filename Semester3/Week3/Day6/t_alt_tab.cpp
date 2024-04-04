@@ -29,7 +29,7 @@ int main() {
   }
 
   for (string c : result)
-    cout << c << " ";
+    cout << c.substr(c.length() - 2);
   cout << "\n";
 
   /*
