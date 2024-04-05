@@ -58,6 +58,24 @@ int main() {
       }
     }
 
+    for (int c : not_optimized_directions_idx) {
+      cout << c << " ";
+    }
+    cout << "\n";
+
+    int p = 1;
+    int temp_contribution_sum = contribution_sum;
+    for (int i = 0; i < not_optimized_directions_idx.size(); i++) {
+      for (int j = 0; j < p; j++) {
+        temp_contribution_sum -= contributions[not_optimized_directions_idx[j]];
+        temp_contribution_sum += palindrome[not_optimized_directions_idx[j]];
+      }
+      cout << temp_contribution_sum << " ";
+      p++;
+    }
+    cout << "\n";
+
+    /*
     for (int j = 0; j < not_optimized_directions_idx.size(); j++) {
       int temp_contribution_sum = contribution_sum;
       for (int i = 0; i < j; i++) {
@@ -67,6 +85,7 @@ int main() {
       cout << temp_contribution_sum << " ";
     }
     cout << "\n";
+    */
 
     /*
 for (int c : contributions)

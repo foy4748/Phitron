@@ -27,14 +27,15 @@ int main() {
       arr[i] = X;
     }
 
+    int ans = 0;
     for (int i = 0; i < N; i++) {
       int elem = arr[i];
-      if (mp[elem] > 1 && !q.empty()) {
+      if (mp[elem] > 1) {
         mp[elem]--;
-        q.pop();
+        ans = i + 1;
       }
     }
-    cout << q.size() << "\n";
+    cout << ans << "\n";
   }
   return 0;
 }
