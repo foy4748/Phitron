@@ -26,26 +26,14 @@ int main() {
     for (int i = 0; i < N - K + 1; i++) {
       int bits[25] = {0};
       for (int j = i; j < i + K; j++) {
-        // cout << arr[j] << " ";
         int num = arr[j];
-        int idx = 0;
-        while (num > 0) {
-          bits[idx] = (num % 2) || bits[idx];
-          num /= 2;
-          idx++;
+        if (num % 2 == 1) {
+          count++;
+          break;
         }
-
-        /* for (int c : bits) */
-        /*   cout << c << " "; */
-        /* cout << "\n"; */
       }
-      int ans = 0;
-      for (int x = 0; x < 25; x++) {
-        ans += (bits[i] << x);
-      }
-      cout << ans << " ";
-      cout << "\n";
     }
+    cout << count << "\n";
   }
   return 0;
 }
