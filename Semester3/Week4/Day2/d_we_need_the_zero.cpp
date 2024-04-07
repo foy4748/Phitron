@@ -25,21 +25,16 @@ int main() {
     for (int i = 0; i < N; i++) {
       xor_of_all_elems = xor_of_all_elems ^ arr[i];
     }
-
-    for (int i = 0; i < N; i++) {
-      xor_arr[i] = arr[i] ^ xor_of_all_elems;
-    }
-
-    int xor_of_xor_of_all_elems = 0;
-    for (int i = 0; i < N; i++) {
-      xor_of_xor_of_all_elems = xor_of_xor_of_all_elems ^ xor_arr[i];
-    }
-
-    if (xor_of_xor_of_all_elems == 0)
+    if (N % 2 == 0) {
+      if (xor_of_all_elems == 0)
+        cout << "0"
+             << "\n";
+      else
+        cout << "-1"
+             << "\n";
+    } else {
       cout << xor_of_all_elems << "\n";
-    else
-      cout << "-1"
-           << "\n";
+    }
   }
   return 0;
 }
