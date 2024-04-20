@@ -15,29 +15,31 @@ int main() {
   while (T--) {
     int N;
     cin >> N;
-    ll arr[N];
+
+    int neg_count = 0;
+    ll absSum = 0;
+    ll absMin;
+
     for (int i = 0; i < N; i++) {
-      cin >> arr[i];
-    }
-
-    for (int i = 1; i < N; i++) {
-      int a = arr[i - 1];
-      int b = arr[i];
-
-      int sum1 = a + b;
-      int sum2 = (ll)(-1) * a + (ll)(-1) * b;
-      if (sum2 > sum1) {
-        arr[i - 1] = (ll)(-1) * a;
-        arr[i] = (ll)(-1) * b;
+      ll x;
+      cin >> x;
+      if (x < 0) {
+        neg_count++;
+      }
+      absSum += abs(x);
+      if (i == 0) {
+        absMin = abs(x);
+      } else {
+        absMin = min(absMin, abs(x));
       }
     }
-    /* for (int c : arr) */
-    /*   cout << c << " "; */
-    /* cout << "\n"; */
-    ll sum = 0;
-    for (int i = 0; i < N; i++)
-      sum += arr[i];
-    cout << sum << "\n";
+
+    if (neg_count % 2 == 0) {
+      cout << absSum << "\n";
+    } else {
+
+      cout << absSum - (2ll) * absMin << "\n";
+    }
   }
   return 0;
 }
