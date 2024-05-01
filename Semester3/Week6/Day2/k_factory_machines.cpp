@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #define endl "\n"
-#define ll long long
+#define ll long long int
 
 using namespace std;
 
@@ -12,10 +12,12 @@ int main() {
 
   ll N, T;
   cin >> N >> T;
-  vector<int> arr(N);
+  vector<ll> arr(N);
   for (ll i = 0; i < N; i++) {
     cin >> arr[i];
   }
+
+  sort(arr.begin(), arr.end());
 
   ll l = 1, r = 1e18;
   ll ans;
@@ -24,7 +26,9 @@ int main() {
     // Checking whether it is ok or not
     ll currentGuessedProducts = 0;
     for (ll i = 0; i < N; i++) {
-      currentGuessedProducts += mid / arr[i];
+      currentGuessedProducts += (mid / arr[i]);
+      if (currentGuessedProducts >= T)
+        break;
     }
 
     if (currentGuessedProducts >= T) {
