@@ -21,23 +21,29 @@ int main() {
     }
 
     sort(arr.begin(), arr.end());
+    ll l = 0, r = arr[N - 1];
+
     auto ok = [&](ll mid) {
-      ll cnt = 0;
-      for (ll i = (N / 2); i < N; i++) {
-        cnt += (arr[i] < mid ? (mid - arr[i]) : 0);
+      ll currIdx = 0;
+      ll currentWorker = 1;
+      for (ll i = 0; i < N; i++) {
+        if (arr[i] - arr[currIdx] > 2 * mid) {
+          currIdx = i;
+          currentWorker++;
+        }
       }
-      return cnt <= 3;
+      return currentWorker <= 3;
     };
 
-    ll l = 0, r = arr[N - 1];
     ll ans;
+
     while (true) {
       if (l == r) {
         cout << l << endl;
         break;
       }
       if (l == r - 1) {
-        if (check(l)) {
+        if (ok(l)) {
           cout << l << endl;
           break;
         } else {
@@ -46,23 +52,13 @@ int main() {
         }
       }
       ll mid = l + (r - l) / (ll)2;
-      int currIdx = 0;
-      int currWorkers = 1;
-      for (int i = 0; i < N; i++) {
-        if (arr[i] - arr[currIdx] > 2 * mid) {
-          currIdx = i;
-          currWorkers++;
-        }
-      }
 
-      if (currWorkers <= 3) {
-        ans = mid;
+      if (ok(mid)) {
         r = mid;
       } else {
         l = mid + (ll)1;
       }
     }
-    cout << ans << "\n";
   }
   return 0;
 }
