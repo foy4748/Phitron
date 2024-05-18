@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #define endl "\n"
-#define ll long long int
+//#define ll long long int
 
 using namespace std;
 
@@ -10,12 +10,11 @@ int main() {
 
   // Write your code here
 
-  int T;
-  cin >> T;
-  while (T--) {
-    ll N;
-    cin >> N;
-    cout << N / 2 << '\n';
+  /*
+  int T; cin>>T;
+  while(T--){
+
   }
+  */
   return 0;
 }
