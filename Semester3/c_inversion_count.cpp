@@ -3,51 +3,52 @@
 #define ll long long int
 
 using namespace std;
-ll merge(int arr[], int l, int mid, int r) {
+
+ll merge(int arr[], int L, int mid, int R) {
   long long inv = 0;
-  int n1 = mid - l + 1;
-  int n2 = r - mid;
-  int a[n1];
-  int b[n2];
+  int n1 = mid - L + 1;
+  int n2 = R - mid;
+  int A[n1];
+  int B[n2];
   for (int i = 0; i < n1; i++) {
-    a[i] = arr[l + i];
+    A[i] = arr[L + i];
   }
   for (int i = 0; i < n2; i++) {
-    b[i] = arr[mid + i + 1];
+    B[i] = arr[mid + i + 1];
   }
-  int i = 0, j = 0, k = l;
+  int i = 0, j = 0, k = L;
   while (i < n1 and j < n2) {
-    if (a[i] <= b[j]) {
-      arr[k] = a[i];
+    if (A[i] <= B[j]) {
+      arr[k] = A[i];
       k++;
       i++;
     } else {
-      arr[k] = b[j];
+      arr[k] = B[j];
       inv += n1 - i;
       k++;
       j++;
     }
   }
   while (i < n1) {
-    arr[k] = a[i];
+    arr[k] = A[i];
     k++;
     i++;
   }
   while (j < n2) {
-    arr[k] = b[j];
+    arr[k] = B[j];
     k++;
     j++;
   }
   return inv;
 }
 
-ll mergeSort(int arr[], int l, int r) {
+ll merge_sort(int arr[], int L, int R) {
   long long inv = 0;
-  if (l < r) {
-    int mid = (l + r) / 2;
-    inv += mergeSort(arr, l, mid);
-    inv += mergeSort(arr, mid + 1, r);
-    inv += merge(arr, l, mid, r);
+  if (L < R) {
+    int mid = (L + R) / 2;
+    inv += merge_sort(arr, L, mid);
+    inv += merge_sort(arr, mid + 1, R);
+    inv += merge(arr, L, mid, R);
   }
   return inv;
 }
@@ -58,19 +59,17 @@ int main() {
 
   // Write your code here
 
-  int n;
-  cin >> n;
-  int arr[n];
-  for (int i = 0; i < n; i++) {
-    cin >> arr[i];
-  }
-  cout << mergeSort(arr, 0, n - 1);
+  int T;
+  cin >> T;
+  while (T--) {
 
-  /*
-  int T; cin>>T;
-  while(T--){
-
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+      cin >> arr[i];
+    }
+    cout << merge_sort(arr, 0, n - 1) << '\n';
   }
-  */
   return 0;
 }
