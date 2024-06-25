@@ -8,7 +8,7 @@ using namespace std;
 bool isFound = false;
 int max_r, max_c;
 int Ar, Ac, Br, Bc;
-const int Limit = 1005;
+const int Limit = 1001;
 
 int dx[] = {0, 0, 1, -1};
 int dy[] = {1, -1, 0, 0};
@@ -25,14 +25,14 @@ bool isEvaporated(int cr, int cc, int lsr, int lsc, int d) {
   int X = abs(cr - lsr);
   int Y = abs(cc - lsc);
   int distance = X + Y;
-  return distance <= d;
+  return distance > d;
 }
 
 void bfs(int lsr, int lsc, int d) {
   queue<pair<int, int>> q;
-  int sr = 1;
-  int sc = 1;
-  isVisited[sr][sc] = true;
+  int sr = 0;
+  int sc = 0;
+  isVisited[0][0] = true;
   grid[0][0] = 0;
   q.push({sr, sc});
 
@@ -61,14 +61,20 @@ int main() {
   int T;
   cin >> T;
   while (T--) {
-    memset(isVisited, false, sizeof(isVisited));
     cin >> max_r >> max_c;
+    for (int i = 0; i < max_r; i++) {
+      for (int j = 0; j < max_r; j++) {
+        grid[i][j] = 0;
+        isVisited[i][j] = false;
+      }
+    }
     int lsr, lsc, d;
     cin >> lsr >> lsc;
     cin >> d;
 
     grid[max_r - 1][max_c - 1] = -1;
-    bfs(lsr, lsc, d);
+    bfs(lsr - 1, lsc - 1, d);
+
     cout << grid[max_r - 1][max_c - 1] << '\n';
   }
 
