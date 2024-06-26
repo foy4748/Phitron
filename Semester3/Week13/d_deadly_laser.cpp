@@ -25,7 +25,7 @@ bool isEvaporated(int cr, int cc, int lsr, int lsc, int d) {
   int X = abs(cr - lsr);
   int Y = abs(cc - lsc);
   int distance = X + Y;
-  return distance > d;
+  return distance < d;
 }
 
 void bfs(int lsr, int lsc, int d) {
@@ -45,9 +45,8 @@ void bfs(int lsr, int lsc, int d) {
     for (int i = 0; i < 4; i++) {
       int nr = pr + dx[i];
       int nc = pc + dy[i];
-
       if (isValid(nr, nc) && !isVisited[nr][nc] &&
-          isEvaporated(nr, nc, lsr, lsc, d)) {
+          !isEvaporated(nr, nc, lsr, lsc, d)) {
         isVisited[nr][nc] = true;
         grid[nr][nc] = grid[pr][pc] + 1;
         q.push({nr, nc});
@@ -73,7 +72,8 @@ int main() {
     cin >> d;
 
     grid[max_r - 1][max_c - 1] = -1;
-    bfs(lsr - 1, lsc - 1, d);
+    if (!isEvaporated(max_r - 1, max_c - 1, lsr - 1, lsc - 1, d))
+      bfs(lsr - 1, lsc - 1, d);
 
     cout << grid[max_r - 1][max_c - 1] << '\n';
   }
