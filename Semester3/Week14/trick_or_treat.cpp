@@ -25,10 +25,10 @@ int main() {
     }
     for (int i = 0; i < N; i++) {
       cin >> arrB[i];
-      int y = arrB[i] % M;
-      int x = (M - y) % M;
+      int Y = arrB[i] % M;
+      int X = (M - Y) % M;
 
-      count += mp[x];
+      count += mp[X];
     }
 
     cout << count << '\n';
