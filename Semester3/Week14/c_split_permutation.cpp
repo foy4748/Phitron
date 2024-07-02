@@ -10,11 +10,23 @@ int main() {
 
   // Write your code here
 
-  /*
-  int T; cin>>T;
-  while(T--){
+  int T;
+  cin >> T;
+  while (T--) {
+    int K;
+    cin >> K;
 
+    if (!(K % 2)) {
+      for (int i = 1; i <= (K / 2); i++) {
+        cout << i << ' ' << K - i + 1 << ' ';
+      }
+      cout << '\n';
+    } else {
+      for (int i = 1; i <= (K / 2); i++) {
+        cout << i << ' ' << K - i << ' ';
+      }
+      cout << K << '\n';
+    }
   }
-  */
   return 0;
 }
