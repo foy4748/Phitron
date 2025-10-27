@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+#define endl "\n"
+#define ll long long int
+
+using namespace std;
+
+ll one_to_n_sum(ll n) { return n * (n + 1) / 2; }
+
+void solve() {
+  // Write your code here
+  int N;
+  cin >> N;
+  vector<ll> v(N);
+  map<ll, ll> mp;
+  set<ll> st;
+  vector<pair<ll, ll>> first_occ;
+  ll max_occ = 0;
+  ll max_elm = -1;
+  ll idx = 0;
+  ll zero_count = 0;
+  bool isAllZero = true;
+  /*
+  for (int i = 0; i < N; i++) {
+    cin >> v[i];
+    mp[v[i]]++;
+    if (v[i] != 0 && st.find(v[i]) == st.end()) {
+      st.insert(v[i]);
+    }
+  }
+
+  for (ll c : st) {
+    cout << c << ' ';
+  }
+  cout << '\n';
+  */
+
+  for (int i = 0; i < N; i++) {
+    cin >> v[i];
+    if (v[i] != 0)
+      isAllZero = false;
+    if (v[i] != 0 && st.find(v[i]) == st.end()) {
+      st.insert(v[i]);
+      first_occ.push_back({v[i], i});
+    }
+    if (v[i] != 0) {
+      mp[v[i]]++;
+      zero_count++;
+    }
+    if (mp[v[i]] > max_occ) {
+      max_occ = max(mp[v[i]], max_occ);
+      idx = i;
+      max_elm = v[i];
+    }
+  }
+
+  if (isAllZero) {
+    cout << one_to_n_sum((ll)(v.size() - 1)) << '\n';
+  } else {
+    mp[max_elm] += zero_count;
+    ll ans = 0;
+    for (ll c : st) {
+      cout << c << '\t' << mp[c] << '\n';
+      /* if (mp[c] >= 2) { */
+      /*   ans += one_to_n_sum(mp[c] - 1); */
+      /* } */
+    }
+    cout << '\n';
+    // cout << ans << '\n';
+  }
+}
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+
+  int T;
+  cin >> T;
+  while (T--)
+    solve();
+  return 0;
+}
